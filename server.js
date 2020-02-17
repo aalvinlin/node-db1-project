@@ -21,15 +21,17 @@ server.get('/', (req, res) => {
 });
 
 server.get('/:id', (req, res) => {
-
-    db("accounts").where({id: req.params.id})
+    
+    db("accounts")
+    .where({id: req.params.id})
+    .first()
         .then(response => {
             console.log("GET /:id response:", response);
 
-            if (response.length)
+            if (response)
                 { res.status(200).json(response); }
             else
-                { res.status(404).json({message: "No user with id " + req.params.id + " found."}); }
+                { res.status(404).json({message: "No account with id " + req.params.id + " found."}); }
         })
         .catch(error => {
             console.log("GET /:id error:", error);
@@ -40,11 +42,12 @@ server.get('/:id', (req, res) => {
 
 server.post('/', (req, res) => {
 
-    db("accounts").insert(req.body)
+    db("accounts")
+    .insert(req.body)
         .then(response => {
             console.log("POST / response:", response);
 
-            if (response.length)
+            if (response.length > 0)
                 { res.status(201).json(response); }
             else
                 { res.status(404).json({message: "POST error..."}); }
@@ -57,14 +60,16 @@ server.post('/', (req, res) => {
 
 server.put('/:id', (req, res) => {
 
-    db("accounts").where({id: req.params.id}).update(req.body)
-        .then(response => {
-            console.log("PUT /:id response:", response);
+    db("accounts")
+    .where({id: req.params.id})
+    .update(req.body)
+        .then(numberUpdated => {
+            console.log("PUT /:id response:", numberUpdated);
 
-            if (response.length)
-                { res.status(200).json(response); }
+            if (numberUpdated > 0)
+                { res.status(200).json(numberUpdated); }
             else
-                { res.status(404).json({message: "No user with id " + req.params.id + " found."}); }
+                { res.status(404).json({message: "No account with id " + req.params.id + " found."}); }
         })
         .catch(error => {
             console.log("PUT /:id error:", error);
@@ -74,14 +79,16 @@ server.put('/:id', (req, res) => {
 
 server.delete('/:id', (req, res) => {
 
-    db("accounts").where({id: req.params.id}).del()
-        .then(response => {
-            console.log("DELETE /:id response:", response);
+    db("accounts")
+    .where({id: req.params.id})
+    .del()
+        .then(numberDeleted => {
+            console.log("DELETE /:id response:", numberDeleted);
 
-            if (response.length)
-                { res.status(200).json(response); }
+            if (numberDeleted > 0)
+                { res.status(200).json(numberDeleted); }
             else
-                { res.status(404).json({message: "No user with id " + req.params.id + " found."}); }
+                { res.status(404).json({message: "No account with id " + req.params.id + " found."}); }
         })
         .catch(error => {
             console.log("DELETE /:id error:", error);
