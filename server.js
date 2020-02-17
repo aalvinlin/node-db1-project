@@ -42,6 +42,9 @@ server.get('/:id', (req, res) => {
 
 server.post('/', (req, res) => {
 
+    if (!req.body || !req.body.name || !req.body.budget)
+        { res.status(400).json({message: "Both name and budget are required."}); }
+
     db("accounts")
     .insert(req.body)
         .then(response => {
