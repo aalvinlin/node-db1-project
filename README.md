@@ -15,7 +15,7 @@ For this lab you will:
 
 ### Write Basic Queries
 
-Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) using the **Google Chrome (or Chromium if you use Linux) browser** and write _SQL queries_ for the following requirements:
+✅Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) using the **Google Chrome (or Chromium if you use Linux) browser** and write _SQL queries_ for the following requirements:
 
 - find all customers with postal code 1010. Returns 3 records.
 - find the phone number for the supplier with the id 11. Should be (010) 9984510.
@@ -43,8 +43,8 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?
 
 The following exercises **require research**, the concepts needed to complete them have not been covered in class yet.
 
-- Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted. Should be 69.
-- Find all suppliers who have names longer than 20 characters. Returns 11 records.
+✅- Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted. Should be 69.
+✅- Find all suppliers who have names longer than 20 characters. Returns 11 records.
 - Add a `query string` option to your `GET /api/accounts` endpoint. The `query string` may contain `limit`, `sortby` and `sortdir` keys. If these keys are provided, use these values to limit and sort the `accounts` which are selected from the database. Reference the docs for sorting and limiting in `knex`.
 
 ```js
