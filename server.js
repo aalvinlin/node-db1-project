@@ -8,7 +8,20 @@ server.use(express.json());
 
 server.get('/', (req, res) => {
 
-    db("accounts")
+    let query = db("accounts");
+
+    if (req.query.limit)
+        { query = query.limit(parseInt(req.query.limit)); }
+
+    if (req.query.sortby)
+        {
+            if (req.sortdir)
+                { query = query.orderBy(req.query.sortby, req.query.sortdir); }
+            else
+                { query = query.orderBy(req.query.sortby); }
+        }
+
+    query
         .then(response => {
             console.log("GET / response:", response);
             res.status(200).json(response);
